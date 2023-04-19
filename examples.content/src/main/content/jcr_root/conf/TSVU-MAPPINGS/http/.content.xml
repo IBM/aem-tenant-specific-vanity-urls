@@ -1,0 +1,8 @@
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" jcr:primaryType="sling:Folder">
+    <ca.vanity.local.8080 jcr:primaryType="nt:unstructured">
+        <content jcr:primaryType="sling:Mapping" sling:internalRedirect="[/content/wknd/ca/en/(.*)]" sling:match="$1"/>
+    </ca.vanity.local.8080>
+    <us.vanity.local.8080 jcr:primaryType="nt:unstructured">
+        <content jcr:primaryType="sling:Mapping" sling:internalRedirect="[/content/wknd/us/en/(.*)]" sling:match="$1"/>
+    </us.vanity.local.8080>
+</jcr:root>

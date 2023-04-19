@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/ibm/aem-tenant-specific-vanity-urls-examples/install"/>
+    <filter root="/apps/ibm/aem-tenant-specific-vanity-urls-examples/config"/>
+    <filter root="/apps/ibm/aem-tenant-specific-vanity-urls-examples/config.publish"/>
+</workspaceFilter>
