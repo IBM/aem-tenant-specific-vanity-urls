@@ -1,0 +1,7 @@
+name: "ATSVU CodeQL config"
+
+queries:
+  - uses: security-and-quality
+
+paths-ignore:
+  - '**/target/**/*.*'
