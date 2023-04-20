@@ -51,6 +51,8 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <aemanalyser.version>1.4.10</aemanalyser.version>
     <componentGroupName>AEM Tenant Specific Vanity URLs</componentGroupName>
+    <sonar.organization>aem-tenant-specific-vanity-urls</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
 
   <build>
