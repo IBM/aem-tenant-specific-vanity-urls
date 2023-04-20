@@ -45,6 +45,7 @@ property = {
         "sling.servlet.resourceTypes=sling/servlet/default"})
 public class TenantSpecificVanityUrlServlet extends SlingSafeMethodsServlet {
 
+    @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");
