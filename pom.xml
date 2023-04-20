@@ -53,6 +53,7 @@
     <componentGroupName>AEM Tenant Specific Vanity URLs</componentGroupName>
     <sonar.organization>aem-tenant-specific-vanity-urls</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.coverage.jacoco.xmlReportPaths>core/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
   </properties>
 
   <build>
@@ -253,6 +254,12 @@ Bundle-DocURL:
           <configuration>
             <useSystemClassLoader>false</useSystemClassLoader>
           </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.9</version>
         </plugin>
 
         <!-- Maven Failsafe Plugin -->
