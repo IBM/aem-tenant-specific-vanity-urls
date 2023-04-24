@@ -69,3 +69,7 @@ The vanity URL configuration can be found here:
 ## License
 
 The software is licensed under the [MIT license](LICENSE).
+
+## Developers
+
+[Developers area](docs/developers.md)

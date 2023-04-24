@@ -537,6 +537,31 @@ Bundle-DocURL:
                 </execution>
               </executions>
             </plugin>
+            <plugin>
+              <groupId>org.sonatype.plugins</groupId>
+              <artifactId>nexus-staging-maven-plugin</artifactId>
+              <version>1.6.13</version>
+              <extensions>true</extensions>
+              <configuration>
+                <serverId>ossrh</serverId>
+                <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                <autoReleaseAfterClose>true</autoReleaseAfterClose>
+              </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-gpg-plugin</artifactId>
+              <version>3.0.1</version>
+              <executions>
+                <execution>
+                  <id>sign-artifacts</id>
+                  <phase>verify</phase>
+                  <goals>
+                    <goal>sign</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
           </plugins>
         </pluginManagement>
       </build>
@@ -717,5 +742,16 @@ Bundle-DocURL:
       </snapshots>
     </repository>
   </repositories>
+
+  <scm>
+    <connection>https://github.com/IBM/aem-tenant-specific-vanity-urls.git</connection>
+    <developerConnection>git@github.com:IBM/aem-tenant-specific-vanity-urls.git</developerConnection>
+    <url>https://github.com/IBM/aem-tenant-specific-vanity-urls</url>
+  </scm>
+
+  <issueManagement>
+    <system>Github</system>
+    <url>https://github.com/IBM/aem-tenant-specific-vanity-urls/issues</url>
+  </issueManagement>
 
 </project>
