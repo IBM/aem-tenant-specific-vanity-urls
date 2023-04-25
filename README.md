@@ -13,9 +13,26 @@ The following AEM versions are supported:
 
 ## Installation
 
-Please install the aem-tenant-specific-vanity-urls.all package on your AEM instance.
+Please install the aem-tenant-specific-vanity-urls.all package from
+[Maven Central](https://repo1.maven.org/maven2/com/ibm/aem/aem-tenant-specific-vanity-urls/aem-tenant-specific-vanity-urls.all/)
+or our [releases section](https://github.com/IBM/aem-tenant-specific-vanity-urls/releases) on your AEM instance.
 This will install the bundle and clientlib to manage tenant specific vanity URLs.
 As the configuration is done via context aware configuration, please also install the wcm.io configuration editor from https://wcm.io/caconfig/editor/usage.html.
+
+```
+<dependency>
+    <groupId>com.ibm.aem.aem-tenant-specific-vanity-urls</groupId>
+    <artifactId>aem-tenant-specific-vanity-urls.all</artifactId>
+    <version>LATEST</version>
+    <type>zip</type>
+</dependency>
+<dependency>
+    <groupId>io.wcm</groupId>
+    <artifactId>io.wcm.caconfig.editor.package</artifactId>
+    <version>LATEST</version>
+    <type>zip</type>
+</dependency>
+```
 
 Now, you can setup the domains.
 
