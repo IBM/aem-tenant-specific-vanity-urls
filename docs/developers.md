@@ -35,6 +35,7 @@ Follow these steps to get authorized to perform a release.
 * `brew install pinentry-mac`
 * Update your "~/.zshrc" and add `export GPG_TTY=$(tty)`
 * Create/update "~/.gnupg/gpg-agent.conf" and add `pinentry-program /opt/homebrew/bin/pinentry-mac`
+* `gpgconf --kill gpg-agent`
 * Request publish rights for Maven Central at "com.ibm.aem" via Sonatype ticket (https://issues.sonatype.org/secure/Dashboard.jspa).
  The request needs to be approved by someone who already has this right.
 * Add the Sonatype credentials to your .m2/settings.xml file:
