@@ -753,8 +753,8 @@ Bundle-DocURL:
   </repositories>
 
   <scm>
-    <connection>https://github.com/IBM/aem-tenant-specific-vanity-urls.git</connection>
-    <developerConnection>git@github.com:IBM/aem-tenant-specific-vanity-urls.git</developerConnection>
+    <connection>scm:git:https://github.com/IBM/aem-tenant-specific-vanity-urls.git</connection>
+    <developerConnection>scm:git:git@github.com:IBM/aem-tenant-specific-vanity-urls.git</developerConnection>
     <url>https://github.com/IBM/aem-tenant-specific-vanity-urls</url>
   </scm>
 
