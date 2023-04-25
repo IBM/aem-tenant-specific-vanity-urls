@@ -69,6 +69,7 @@
           <useReleaseProfile>false</useReleaseProfile>
           <goals>deploy</goals>
           <releaseProfiles>release</releaseProfiles>
+          <tagNameFormat>@{project.version}</tagNameFormat>
         </configuration>
       </plugin>
 

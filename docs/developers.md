@@ -24,11 +24,17 @@ Test URLs:
 
 ## Publish a Release
 
+* `mvn release:clean release:prepare`
+* `mvn release:perform`
+
 ## Requirements for Release Publishing
 
 Follow these steps to get authorized to perform a release.
 
 * Create a PGP key: `gpg --gen-key`
+* `brew install pinentry-mac`
+* Update your "~/.zshrc" and add `export GPG_TTY=$(tty)`
+* Create/update "~/.gnupg/gpg-agent.conf" and add `pinentry-program /opt/homebrew/bin/pinentry-mac`
 * Request publish rights for Maven Central at "com.ibm.aem" via Sonatype ticket (https://issues.sonatype.org/secure/Dashboard.jspa).
  The request needs to be approved by someone who already has this right.
 * Add the Sonatype credentials to your .m2/settings.xml file:
