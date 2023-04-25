@@ -24,6 +24,7 @@
   <version>0.9.1-SNAPSHOT</version>
   <name>AEM Tenant Specific Vanity URLs</name>
   <description>AEM Tenant Specific Vanity URLs</description>
+  <url>https://github.com/IBM/aem-tenant-specific-vanity-urls</url>
 
   <modules>
     <module>all</module>
@@ -79,6 +80,35 @@
         <artifactId>maven-source-plugin</artifactId>
         <version>3.0.1</version>
         <inherited>true</inherited>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.1.1</version>
+        <configuration>
+          <source>8</source>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.2</version>
       </plugin>
 
       <!-- Maven Enforcer Plugin -->
@@ -168,13 +198,6 @@
               </configuration>
             </execution>
           </executions>
-        </plugin>
-
-        <!-- Maven Jar Plugin -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.1.2</version>
         </plugin>
 
         <!-- Maven Clean Plugin -->
