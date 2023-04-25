@@ -24,7 +24,7 @@
     <parent>
         <groupId>com.ibm.aem.aem-tenant-specific-vanity-urls</groupId>
         <artifactId>aem-tenant-specific-vanity-urls</artifactId>
-        <version>0.9.1</version>
+        <version>0.9.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
