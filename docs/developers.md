@@ -32,8 +32,9 @@ Test URLs:
 Follow these steps to get authorized to perform a release.
 
 * Create a PGP key: `gpg --gen-key`
+* Upload your public key to e.g. http://keyserver.ubuntu.com:11371/
 * `brew install pinentry-mac`
-* Update your "~/.zshrc" and add `export GPG_TTY=$(tty)`
+* Update your "~/.zshrc" and add `export GPG_TTY=$(tty)`, then close all open terminals and exit the terminal app
 * Create/update "~/.gnupg/gpg-agent.conf" and add `pinentry-program /opt/homebrew/bin/pinentry-mac`
 * `gpgconf --kill gpg-agent`
 * Request publish rights for Maven Central at "com.ibm.aem" via Sonatype ticket (https://issues.sonatype.org/secure/Dashboard.jspa).
