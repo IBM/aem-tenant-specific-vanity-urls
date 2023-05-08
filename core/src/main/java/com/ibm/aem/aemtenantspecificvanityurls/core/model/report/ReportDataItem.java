@@ -18,19 +18,14 @@
  */
 package com.ibm.aem.aemtenantspecificvanityurls.core.model.report;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-
-import javax.annotation.PostConstruct;
-
 import com.ibm.aem.aemtenantspecificvanityurls.core.caconfig.TenantSpecificVanityUrlConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.caconfig.ConfigurationBuilder;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
-import sun.util.resources.cldr.ext.TimeZoneNames_en_ER;
+
+import javax.annotation.PostConstruct;
 
 /**
  * Model class for a single report item.
@@ -72,7 +67,7 @@ public class ReportDataItem {
      * @return date
      */
     public String getMappedPath() {
-        return reportEntry.getPagePath();
+        return resource.getResourceResolver().map(reportEntry.getPagePath());
     }
 
     /**

@@ -19,6 +19,7 @@
 package com.ibm.aem.aemtenantspecificvanityurls.core.model.report;
 
 import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
@@ -63,7 +64,7 @@ public class ReportService {
         predicates.put("property.operation", "exists");
         predicates.put("orderby", "@jcr:path");
         PredicateGroup predicateGroup = PredicateGroup.create(predicates);
-        com.day.cq.search.Query query = queryBuilder.createQuery(predicateGroup, resolver.adaptTo(Session.class));
+        Query query = queryBuilder.createQuery(predicateGroup, resolver.adaptTo(Session.class));
         if (limit != 0) {
             query.setHitsPerPage(limit);
         }
