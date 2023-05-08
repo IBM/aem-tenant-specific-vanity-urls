@@ -57,6 +57,14 @@ E.g. check if they are not blocked or transformed. The result needs to be "/cont
 Vanity URLs should not have any extension. If your normal pages have an ".html" extension then make sure that
 a call of e.g. "http://ca.vanity.local:8080/wow" is correctly handled by your rewrites and results in e.g. "/content/wknd/ca/en/wow.html".
 
+## Vanity Report Tool
+
+You can see a list of all vanity URLs in the system. Open Tools ->
+AEM Tenant Specific Vanity URLs -> Vanity URL Report. This provides a quick overview which vanity URLs are setup and where.
+You can edit the pages directly from the report.
+
+![Vanity URL Report](docs/images/report.png)
+
 ## Examples
 
 You can install our example package. This includes pre-defined configuration for AEM's [WKND](https://github.com/adobe/aem-guides-wknd) pages.
