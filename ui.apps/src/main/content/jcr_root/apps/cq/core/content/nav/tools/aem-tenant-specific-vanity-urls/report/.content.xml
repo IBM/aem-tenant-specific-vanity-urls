@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Vanity URL Report"
+          jcr:description="Shows a list of vanity URLs in the system"
+          href="/apps/ibm/aem-tenant-specific-vanity-urls/tools/report/page.html"
+          icon="report"
+          id="atsvu-report"
+/>

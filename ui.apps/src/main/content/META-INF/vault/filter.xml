@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
     <filter root="/apps/ibm/aem-tenant-specific-vanity-urls/clientlibs"/>
+    <filter root="/apps/ibm/aem-tenant-specific-vanity-urls/tools"/>
+    <filter root="/apps/cq/core/content/nav/tools/aem-tenant-specific-vanity-urls"/>
 </workspaceFilter>

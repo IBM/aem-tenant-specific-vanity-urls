@@ -64,6 +64,9 @@
                         <!-- Immutable context-aware configurations -->
                         <filter><root>/apps/settings</root></filter>
 
+                        <!-- Navigation -->
+                        <filter><root>/apps/cq/core/content/nav/tools</root></filter>
+
                     </filters>
                 </configuration>
             </plugin>
