@@ -1,0 +1,12 @@
+<sly data-sly-use.dataItem="com.ibm.aem.aemtenantspecificvanityurls.core.model.report.ReportDataItem"/>
+<tr is="coral-table-row" class="foundation-collection-item">
+    <td is="coral-table-cell">
+        ${dataItem.vanityUrl}
+    </td>
+    <td is="coral-table-cell">
+        ${dataItem.mappedPath}
+    </td>
+    <td is="coral-table-cell">
+        <a target="_blank" href="/editor.html${dataItem.pagePath}.html">Edit</a>
+    </td>
+</tr>

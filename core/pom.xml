@@ -45,6 +45,7 @@
                             <bnd><![CDATA[
 Import-Package: javax.annotation;version=0.0.0,*
 -plugin org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin
+-plugin org.apache.sling.bnd.models.ModelsScannerPlugin
                                 ]]></bnd>
                         </configuration>
                     </execution>
