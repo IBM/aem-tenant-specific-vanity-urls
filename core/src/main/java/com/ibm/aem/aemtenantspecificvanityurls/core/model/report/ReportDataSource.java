@@ -49,7 +49,7 @@ public class ReportDataSource {
     private static final String ITEM_TYPE = "ibm/aem-tenant-specific-vanity-urls/tools/report/dataitem";
     public static final String ATTR_REPORT = "report";
 
-    private static final Logger LOG = LoggerFactory.getLogger(DataSource.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ReportDataSource.class);
 
     @OSGiService
     private ReportService reportService;
@@ -85,7 +85,7 @@ public class ReportDataSource {
                 try {
                     List<ReportEntry> reportEntries = reportService.getVanityEntries(offset, limit + 1, request.getResourceResolver());
                     for (ReportEntry reportEntry : reportEntries) {
-                        ValueMap vm = new ValueMapDecorator(new HashMap<String, Object>());
+                        ValueMap vm = new ValueMapDecorator(new HashMap<>());
                         vm.put(ATTR_REPORT, reportEntry);
                         entries.add(new ValueMapResource(request.getResourceResolver(), reportEntry.getPagePath(),
                                 ITEM_TYPE, vm));

@@ -49,7 +49,7 @@ import static org.mockito.Mockito.when;
  * @author Roland Gruber
  */
 @ExtendWith(MockitoExtension.class)
-public class ReportServiceTest {
+class ReportServiceTest {
 
     private static final String PATH1 = "/content/site/x/y/z/page1";
     private static final String PATH2 = "/content/site/x/y/z/page2";

@@ -42,7 +42,7 @@ import static org.mockito.Mockito.when;
  */
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-public class ReportDataItemTest {
+class ReportDataItemTest {
 
     private static final String PREFIX = "/content/site/";
 
