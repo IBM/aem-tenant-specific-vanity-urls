@@ -45,15 +45,15 @@ import java.util.Map;
 @Component(service = ReportService.class)
 public class ReportService {
 
-    private static final String ORDER_ASC = "asc";
-    private static final String ORDER_DESC = "desc";
-    private static final String ORDER_BY_PATH = "path";
-    private static final String ORDER_BY_VANITY_PATH = "vanityUrl";
+    public static final String ORDER_ASC = "asc";
+    public static final String ORDER_DESC = "desc";
+    public static final String ORDER_BY_PATH = "path";
+    public static final String ORDER_BY_VANITY_PATH = "vanityUrl";
 
     /**
      * Order types
      */
-    public static enum ORDER {
+    public enum ORDER {
         ASC,
         DESC;
 
@@ -72,7 +72,7 @@ public class ReportService {
     /**
      * Order attributes
      */
-    public static enum ORDER_ATTR {
+    public enum ORDER_ATTR {
         PATH,
         VANITY_PATH;
 

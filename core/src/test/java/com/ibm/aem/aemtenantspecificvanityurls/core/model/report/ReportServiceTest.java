@@ -34,6 +34,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -41,6 +43,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 /**
@@ -49,6 +52,7 @@ import static org.mockito.Mockito.when;
  * @author Roland Gruber
  */
 @ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 class ReportServiceTest {
 
     private static final String PATH1 = "/content/site/x/y/z/page1";
@@ -118,6 +122,16 @@ class ReportServiceTest {
         assertEquals(PATH2, entries.get(1).getPagePath());
         assertEquals(VANITY1, entries.get(0).getVanityUrl());
         assertEquals(VANITY2, entries.get(1).getVanityUrl());
+    }
+
+    @Test
+    void checkEnums() {
+        assertEquals(ReportService.ORDER.ASC, ReportService.ORDER.parse(ReportService.ORDER_ASC));
+        assertEquals(ReportService.ORDER.DESC, ReportService.ORDER.parse(ReportService.ORDER_DESC));
+        assertNull(ReportService.ORDER.parse("invalid"));
+        assertEquals(ReportService.ORDER_ATTR.PATH, ReportService.ORDER_ATTR.parse(ReportService.ORDER_BY_PATH));
+        assertEquals(ReportService.ORDER_ATTR.VANITY_PATH, ReportService.ORDER_ATTR.parse(ReportService.ORDER_BY_VANITY_PATH));
+        assertNull(ReportService.ORDER_ATTR.parse("invalid"));
     }
 
 }
