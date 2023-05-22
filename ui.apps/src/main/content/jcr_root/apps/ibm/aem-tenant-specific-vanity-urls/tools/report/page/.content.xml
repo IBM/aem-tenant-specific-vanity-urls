@@ -34,7 +34,7 @@
 				                    layoutId="list"
 				                    sling:resourceType="granite/ui/components/coral/foundation/table"
 				                    limit="50"
-				                    src="/apps/ibm/aem-tenant-specific-vanity-urls/tools/report/page/jcr:content/views/list{.offset,limit}.html?wcmmode=disabled"
+				                    src="/apps/ibm/aem-tenant-specific-vanity-urls/tools/report/page/jcr:content/views/list{.offset,limit}.html{?sortName,sortDir}"
 				                    path="${requestPathInfo.suffix}"
 				                    sortMode="remote"
 				                    stateId="shell.collectionpage"
@@ -45,10 +45,16 @@
 				                    <vanityUrl
 				                            jcr:primaryType="nt:unstructured"
 				                            jcr:title="Vanity URL"
+											name="vanityUrl"
+											sortable="{Boolean}true"
+											sortType="alphanumeric"
 				                    />
 				                    <mappedPath
 				                            jcr:primaryType="nt:unstructured"
 				                            jcr:title="Path"
+											name="path"
+											sortable="{Boolean}true"
+											sortType="alphanumeric"
 				                    />
 				                    <link
 				                            jcr:primaryType="nt:unstructured"

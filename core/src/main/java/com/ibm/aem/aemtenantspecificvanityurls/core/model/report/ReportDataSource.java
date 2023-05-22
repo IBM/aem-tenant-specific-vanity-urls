@@ -23,6 +23,7 @@ import com.adobe.granite.ui.components.ds.DataSource;
 import com.adobe.granite.ui.components.ds.ValueMapResource;
 import com.ibm.aem.aemtenantspecificvanityurls.core.exceptions.AtsvuException;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.wrappers.ValueMapDecorator;
@@ -66,24 +67,36 @@ public class ReportDataSource {
             offset = Integer.parseInt(selectors[0]);
             limit = Integer.parseInt(selectors[1]);
         }
-        request.setAttribute(DataSource.class.getName(), getResourceIterator(offset, limit));
+        ReportService.ORDER sortOrder = ReportService.ORDER.ASC;
+        RequestParameter sortOrderParam = request.getRequestParameter("sortDir");
+        if (sortOrderParam != null) {
+            sortOrder = ReportService.ORDER.parse(sortOrderParam.getString());
+        }
+        ReportService.ORDER_ATTR sortAttr = ReportService.ORDER_ATTR.PATH;
+        RequestParameter sortAttrParam = request.getRequestParameter("sortName");
+        if (sortAttrParam != null) {
+            sortAttr = ReportService.ORDER_ATTR.parse(sortAttrParam.getString());
+        }
+        request.setAttribute(DataSource.class.getName(), getResourceIterator(offset, limit, sortAttr, sortOrder));
     }
 
     /**
      * Returns the history entries.
      *
-     * @param offset offset where to start reading
-     * @param limit  maximum number of entries to return
+     * @param offset    offset where to start reading
+     * @param limit     maximum number of entries to return
+     * @param sortAttr  sort attribute
+     * @param sortOrder sort direction
      * @return entries
      */
-    private DataSource getResourceIterator(int offset, int limit) {
+    private DataSource getResourceIterator(int offset, int limit, ReportService.ORDER_ATTR sortAttr, ReportService.ORDER sortOrder) {
         return new AbstractDataSource() {
 
             @Override
             public Iterator<Resource> iterator() {
                 List<Resource> entries = new ArrayList<>();
                 try {
-                    List<ReportEntry> reportEntries = reportService.getVanityEntries(offset, limit + 1, request.getResourceResolver());
+                    List<ReportEntry> reportEntries = reportService.getVanityEntries(offset, limit + 1, sortAttr, sortOrder, request.getResourceResolver());
                     for (ReportEntry reportEntry : reportEntries) {
                         ValueMap vm = new ValueMapDecorator(new HashMap<>());
                         vm.put(ATTR_REPORT, reportEntry);

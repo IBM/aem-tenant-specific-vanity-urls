@@ -111,7 +111,7 @@ class ReportServiceTest {
         List<Hit> hits = Arrays.asList(hit1, hit2);
         when(searchResult.getHits()).thenReturn(hits);
 
-        List<ReportEntry> entries = service.getVanityEntries(0, 100, resolver);
+        List<ReportEntry> entries = service.getVanityEntries(0, 100, ReportService.ORDER_ATTR.PATH, ReportService.ORDER.ASC, resolver);
 
         assertEquals(2, entries.size());
         assertEquals(PATH1, entries.get(0).getPagePath());

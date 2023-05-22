@@ -1,9 +1,9 @@
 <sly data-sly-use.dataItem="com.ibm.aem.aemtenantspecificvanityurls.core.model.report.ReportDataItem"/>
 <tr is="coral-table-row" class="foundation-collection-item">
-    <td is="coral-table-cell">
+    <td is="coral-table-cell" value="${dataItem.vanityUrl}">
         ${dataItem.vanityUrl}
     </td>
-    <td is="coral-table-cell">
+    <td is="coral-table-cell" value="${dataItem.mappedPath}">
         ${dataItem.mappedPath}
     </td>
     <td is="coral-table-cell">

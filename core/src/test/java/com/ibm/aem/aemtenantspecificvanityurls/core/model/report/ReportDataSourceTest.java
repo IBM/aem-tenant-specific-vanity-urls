@@ -81,7 +81,7 @@ class ReportDataSourceTest {
         when(request.getRequestPathInfo()).thenReturn(requestPathInfo);
         when(request.getResourceResolver()).thenReturn(resolver);
         when(requestPathInfo.getSelectors()).thenReturn(new String[] {"200", "100"});
-        when(reportService.getVanityEntries(200, 101, resolver)).thenReturn(reportList);
+        when(reportService.getVanityEntries(200, 101, ReportService.ORDER_ATTR.PATH, ReportService.ORDER.ASC, resolver)).thenReturn(reportList);
     }
 
     @Test

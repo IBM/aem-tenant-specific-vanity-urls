@@ -45,6 +45,48 @@ import java.util.Map;
 @Component(service = ReportService.class)
 public class ReportService {
 
+    private static final String ORDER_ASC = "asc";
+    private static final String ORDER_DESC = "desc";
+    private static final String ORDER_BY_PATH = "path";
+    private static final String ORDER_BY_VANITY_PATH = "vanityUrl";
+
+    /**
+     * Order types
+     */
+    public static enum ORDER {
+        ASC,
+        DESC;
+
+        public static ORDER parse(String value) {
+            if (ORDER_ASC.equals(value)) {
+                return ASC;
+            }
+            if (ORDER_DESC.equals(value)) {
+                return DESC;
+            }
+            return null;
+        }
+
+    }
+
+    /**
+     * Order attributes
+     */
+    public static enum ORDER_ATTR {
+        PATH,
+        VANITY_PATH;
+
+        public static ORDER_ATTR parse(String value) {
+            if (ORDER_BY_PATH.equals(value)) {
+                return PATH;
+            }
+            if (ORDER_BY_VANITY_PATH.equals(value)) {
+                return VANITY_PATH;
+            }
+            return null;
+        }
+    }
+
     @Reference
     private QueryBuilder queryBuilder;
 
@@ -53,16 +95,26 @@ public class ReportService {
      *
      * @param offset           offset
      * @param limit            search limit
+     * @param orderAttr        order attribute
+     * @param order            order direction
      * @param resolver         resource resolver
      * @return entries
      * @throws AtsvuException error during search
      */
-    public List<ReportEntry> getVanityEntries(int offset, int limit, ResourceResolver resolver) throws AtsvuException {
+    public List<ReportEntry> getVanityEntries(int offset, int limit, ORDER_ATTR orderAttr, ORDER order, ResourceResolver resolver) throws AtsvuException {
         Map<String, Object> predicates = new HashMap<>();
         predicates.put("path", "/content");
         predicates.put("property", NameConstants.PN_SLING_VANITY_PATH);
         predicates.put("property.operation", "exists");
-        predicates.put("orderby", "@jcr:path");
+        if (orderAttr == ORDER_ATTR.PATH) {
+            predicates.put("orderby", "@jcr:path");
+        }
+        else {
+            predicates.put("orderby", "@sling:vanityPath");
+        }
+        if (ORDER.DESC == order) {
+            predicates.put("orderby.sort", "desc");
+        }
         PredicateGroup predicateGroup = PredicateGroup.create(predicates);
         Query query = queryBuilder.createQuery(predicateGroup, resolver.adaptTo(Session.class));
         if (limit != 0) {
