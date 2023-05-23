@@ -24,6 +24,7 @@ Test URLs:
 
 ## Publish a Release
 
+* Update CHANGES.md if needed
 * `mvn release:clean release:prepare`
 * `mvn release:perform`
 
