@@ -27,6 +27,8 @@ Test URLs:
 * Update CHANGES.md if needed
 * `mvn release:clean release:prepare`
 * `mvn release:perform`
+* Add GitHub release from tag https://github.com/IBM/aem-tenant-specific-vanity-urls/tags
+  * attach "all" and "examples" packages
 
 ## Requirements for Release Publishing
 
