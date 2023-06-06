@@ -26,7 +26,7 @@ import org.apache.sling.caconfig.annotation.Property;
  *
  * @author Roland Gruber
  */
-@Configuration(label = "Tenant Specific Vanity URL Configuration")
+@Configuration(label = "Tenant Specific Vanity URL Configuration", description = "Manage vanity URL prefixes")
 public @interface TenantSpecificVanityUrlConfig {
 
     @Property(

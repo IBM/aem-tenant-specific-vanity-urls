@@ -207,41 +207,41 @@
           <version>3.0.0</version>
         </plugin>
 
-        <!-- BND Maven Plugin -->
         <plugin>
-          <groupId>biz.aQute.bnd</groupId>
-          <artifactId>bnd-maven-plugin</artifactId>
-          <version>${bnd.version}</version>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <extensions>true</extensions>
           <executions>
             <execution>
-              <id>bnd-process</id>
+              <id>scr-metadata</id>
               <goals>
-                <goal>bnd-process</goal>
+                <goal>manifest</goal>
               </goals>
               <configuration>
-                <bnd><![CDATA[
-Bundle-Category: ${componentGroupName}
-
-# export all versioned packages except for conditional ones (https://github.com/bndtools/bnd/issues/3721#issuecomment-579026778)
--exportcontents: ${removeall;${packages;VERSIONED};${packages;CONDITIONAL}}
-
-# reproducible builds (https://github.com/bndtools/bnd/issues/3521)
--noextraheaders: true
--snapshot: SNAPSHOT
-
-Bundle-DocURL:
--plugin org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin
--plugin org.apache.sling.bnd.models.ModelsScannerPlugin
-                                ]]></bnd>
+                <supportIncrementalBuild>true</supportIncrementalBuild>
               </configuration>
             </execution>
           </executions>
+          <configuration>
+            <exportScr>true</exportScr>
+            <instructions>
+              <_plugin>
+                <!-- Enable registration of Sling Models classes via bnd plugin -->
+                org.apache.sling.bnd.models.ModelsScannerPlugin,
+                <!-- Generate bundle header containing all configuration annotation classes -->
+                org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin
+              </_plugin>
+              <!-- Enable processing of OSGI DS component annotations -->
+              <_dsannotations>*</_dsannotations>
+              <!-- Enable processing of OSGI metatype annotations -->
+              <_metatypeannotations>*</_metatypeannotations>
+              <Import-Package>
+                javax.annotation;version=0.0.0,
+                *
+              </Import-Package>
+            </instructions>
+          </configuration>
           <dependencies>
-            <dependency>
-              <groupId>org.apache.sling</groupId>
-              <artifactId>org.apache.sling.caconfig.bnd-plugin</artifactId>
-              <version>1.0.2</version>
-            </dependency>
             <dependency>
               <groupId>org.apache.sling</groupId>
               <artifactId>org.apache.sling.bnd.models</artifactId>
@@ -249,8 +249,8 @@ Bundle-DocURL:
             </dependency>
             <dependency>
               <groupId>org.apache.sling</groupId>
-              <artifactId>scriptingbundle-maven-plugin</artifactId>
-              <version>0.5.0</version>
+              <artifactId>org.apache.sling.caconfig.bnd-plugin</artifactId>
+              <version>1.0.2</version>
             </dependency>
           </dependencies>
         </plugin>

@@ -16,7 +16,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-@Version("1.0")
+@Version("1.0.1")
 package com.ibm.aem.aemtenantspecificvanityurls.core.caconfig;
 
 import org.osgi.annotation.versioning.Version;

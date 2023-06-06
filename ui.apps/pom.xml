@@ -65,7 +65,7 @@
                         <dependency>
                             <groupId>io.wcm</groupId>
                             <artifactId>io.wcm.caconfig.editor.package</artifactId>
-                            <version>1.15.4</version>
+                            <version>1.15.6</version>
                         </dependency>
                     </dependencies>
                 </configuration>
