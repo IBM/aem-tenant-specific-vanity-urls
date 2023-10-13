@@ -5,6 +5,11 @@
 This solution allows you to manage the same vanity URL for different content trees.
 It circumvents the limitation of Sling where vanity URLs are global.
 
+The tool was presented at the [adaptTo() conference 2023](https://adapt.to/2023/schedule/tenant-specific-vanity-urls-with-aem). You can download the slides there and here is the video:
+
+[![AEM Tenant Specific Vanity URLs @ adaptTo() 2023](https://img.youtube.com/vi/IvclYIoIEpk/0.jpg)](https://www.youtube.com/watch?v=IvclYIoIEpk "AEM Tenant Specific Vanity URLs @ adaptTo() 2023")
+
+
 ## Requirements
 
 The following AEM versions are supported:
