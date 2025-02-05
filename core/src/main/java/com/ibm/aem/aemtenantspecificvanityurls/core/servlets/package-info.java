@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 IBM iX
+ * Copyright 2025 IBM iX
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -16,29 +16,7 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.ibm.aem.aemtenantspecificvanityurls.core.caconfig;
+@Version("1.1.0")
+package com.ibm.aem.aemtenantspecificvanityurls.core.servlets;
 
-import org.apache.sling.caconfig.annotation.Configuration;
-import org.apache.sling.caconfig.annotation.Property;
-import org.apache.sling.models.annotations.Default;
-
-/**
- * CA Config to manage the prefix for a content tree.
- *
- * @author Roland Gruber
- */
-@Configuration(label = "Tenant Specific Vanity URL Configuration", description = "Manage vanity URL prefixes")
-public @interface TenantSpecificVanityUrlConfig {
-
-    @Property(
-            label = "Prefix",
-            description = "Specify the prefix for vanity URLs in the linked content tree. Must match your Apache configuration.")
-    String prefix();
-
-    @Property(
-      label = "Convert to lower-case",
-      description = "Enforces a conversion of the vanity entry to lower-case. This is helpful if you want to have case-insensitive URLs (requires also conversion on dispatcher).")
-    @Default(booleanValues = false)
-    boolean toLowerCase();
-
-}
+import org.osgi.annotation.versioning.Version;

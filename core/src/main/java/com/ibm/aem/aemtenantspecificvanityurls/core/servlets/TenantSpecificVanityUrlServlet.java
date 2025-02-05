@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 IBM iX
+ * Copyright 2023 - 2025 IBM iX
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -55,6 +55,7 @@ public class TenantSpecificVanityUrlServlet extends SlingSafeMethodsServlet {
         TenantSpecificVanityUrlConfig config = configurationBuilder.as(TenantSpecificVanityUrlConfig.class);
         JsonObject json = new JsonObject();
         json.addProperty("prefix", config.prefix());
+        json.addProperty("toLowerCase", config.toLowerCase());
         response.getWriter().write(json.toString());
     }
 

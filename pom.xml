@@ -21,7 +21,7 @@
   <groupId>com.ibm.aem.aem-tenant-specific-vanity-urls</groupId>
   <artifactId>aem-tenant-specific-vanity-urls</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.1.1-SNAPSHOT</version>
   <name>AEM Tenant Specific Vanity URLs</name>
   <description>AEM Tenant Specific Vanity URLs</description>
   <url>https://github.com/IBM/aem-tenant-specific-vanity-urls</url>
@@ -210,6 +210,7 @@
         <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
+          <version>5.1.9</version>
           <extensions>true</extensions>
           <executions>
             <execution>

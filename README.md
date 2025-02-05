@@ -51,6 +51,8 @@ The prefix can be any value (e.g. "/content/wknd/ca/en") but must be unique for 
 
 Now, as soon as an author sets a vanity URL, this prefix will be added. This makes sure all vanity URLs have the correct prefix.
 
+You can also convert all editor input for vanity URLs to lower-case. This is helpful if you want to have case-insensitive vanity URLs. Please note that you need to convert incoming vanity requests to lower-case on dispatcher then.
+
 ![Context Aware Configuration](docs/images/caconfig1.png)
 ![Prefix Configuration](docs/images/caconfig2.png)
 
