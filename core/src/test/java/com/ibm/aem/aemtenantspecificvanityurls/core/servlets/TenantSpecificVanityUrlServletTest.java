@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 IBM iX
+ * Copyright 2023 - 2025 IBM iX
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -78,7 +78,7 @@ public class TenantSpecificVanityUrlServletTest {
     void doGet() throws ServletException, IOException {
         servlet.doGet(request, response);
 
-        verify(writer).write("{\"prefix\":\"" + MYPREFIX + "\"}");
+        verify(writer).write("{\"prefix\":\"" + MYPREFIX + "\",\"toLowerCase\":false}");
     }
 
 }

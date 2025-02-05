@@ -1,5 +1,6 @@
 # Release History
-* 1.0.2
+* 1.1.0
+  * Added possibility to auto-convert vanity values to lower-case
   * More example vanity URLs
 
 * 1.0.1

@@ -33,7 +33,7 @@ window.tsvu_prefix.init = function () {
                 .then((data) => {
                     if (data.prefix && (data.prefix.length > 0)) {
                         window.tsvu_prefix.clearPrefixWhenLoaded(data.prefix);
-                        window.tsvu_prefix.addSaveHandler(data.prefix);
+                        window.tsvu_prefix.addSaveHandler(data.prefix, data.toLowerCase);
                     }
                 });
         }
@@ -85,14 +85,18 @@ window.tsvu_prefix.clearPrefix = function(prefix) {
  * Registers the form save handler and readds the prefixes before form is saved.
  *
  * @param prefix vanity prefix
+ * @param toLowerCase convert the value to lower-case
  */
-window.tsvu_prefix.addSaveHandler = function (prefix) {
+window.tsvu_prefix.addSaveHandler = function (prefix, toLowerCase) {
     $(window).adaptTo("foundation-registry").register("foundation.form.submit", {
         selector: '*',
         handler: function() {
             const fields = window.tsvu_prefix.findInputFields();
             fields.forEach(function (currentValue) {
                 if (currentValue.value && !currentValue.value.startsWith(prefix)) {
+                    if (toLowerCase) {
+                        currentValue.value = currentValue.value.toLowerCase();
+                    }
                     currentValue.value = prefix + currentValue.value;
                 }
             });
