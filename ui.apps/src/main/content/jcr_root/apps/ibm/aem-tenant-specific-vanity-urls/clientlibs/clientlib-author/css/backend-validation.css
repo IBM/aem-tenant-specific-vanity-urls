@@ -1,0 +1,48 @@
+/**
+ * Copyright 2023 - 2025 IBM iX
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+.coral3-Textfield.is-loading {
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: calc(100% - 11px) 9px;
+    padding-right: 41px
+}
+
+._coral-Textfield.is-loading {
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: calc(100% - 11px) 6px;
+    padding-right: 41px
+}
+
+.coral--large ._coral-Textfield.is-loading {
+    background-size: 22px 22px;
+    background-position: calc(100% - 14px) 8px;
+    padding-right: 51px
+}
+
+.coral--light .coral3-Textfield.is-loading,
+.coral--light ._coral-Textfield.is-loading {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' height='18' viewBox='0 0 18 18' width='18'%3E%3Ccircle cx='3' cy='9' r='2' fill='%23323232'%3E%3Canimate attributeName='opacity' dur='2s' calcMode='spline' repeatCount='indefinite' values='0; 1; 0' keySplines='0.5 0 0.5 1; 0.5 0 0.5 1' begin='-0.4s'/%3E%3C/circle%3E%3Ccircle cx='9' cy='9' r='2' fill='%23323232'%3E%3Canimate attributeName='opacity' dur='2s' calcMode='spline' repeatCount='indefinite' values='0; 1; 0' keySplines='0.5 0 0.5 1; 0.5 0 0.5 1' begin='-0.2s'/%3E%3C/circle%3E%3Ccircle cx='15' cy='9' r='2' fill='%23323232'%3E%3Canimate attributeName='opacity' dur='2s' calcMode='spline' repeatCount='indefinite' values='0; 1; 0' keySplines='0.5 0 0.5 1; 0.5 0 0.5 1' begin='0s'/%3E%3C/circle%3E%3C/svg%3E");
+}
+
+.coral--dark .coral3-Textfield.is-loading,
+.coral--dark ._coral-Textfield.is-loading {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' height='18' viewBox='0 0 18 18' width='18'%3E%3Ccircle cx='3' cy='9' r='2' fill='%23fff'%3E%3Canimate attributeName='opacity' dur='2s' calcMode='spline' repeatCount='indefinite' values='0; 1; 0' keySplines='0.5 0 0.5 1; 0.5 0 0.5 1' begin='-0.4s'/%3E%3C/circle%3E%3Ccircle cx='9' cy='9' r='2' fill='%23fff'%3E%3Canimate attributeName='opacity' dur='2s' calcMode='spline' repeatCount='indefinite' values='0; 1; 0' keySplines='0.5 0 0.5 1; 0.5 0 0.5 1' begin='-0.2s'/%3E%3C/circle%3E%3Ccircle cx='15' cy='9' r='2' fill='%23fff'%3E%3Canimate attributeName='opacity' dur='2s' calcMode='spline' repeatCount='indefinite' values='0; 1; 0' keySplines='0.5 0 0.5 1; 0.5 0 0.5 1' begin='0s'/%3E%3C/circle%3E%3C/svg%3E");
+}

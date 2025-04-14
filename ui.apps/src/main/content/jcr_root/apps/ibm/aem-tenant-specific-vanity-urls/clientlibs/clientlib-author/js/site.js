@@ -24,19 +24,35 @@ window.tsvu_prefix = window.tsvu_prefix || {};
  */
 window.tsvu_prefix.init = function () {
     if (window.location.pathname === '/mnt/overlay/wcm/core/content/sites/properties.html') {
-        const urlParams = new URLSearchParams(window.location.search);
-        const item = urlParams.get('item');
-        if (item && item.startsWith("/content")) {
-            const prefixUrl = item + ".tsvu_prefix.json";
+        const prefixUrl = window.tsvu_prefix.getTsvuServletUrl();
+        if (prefixUrl) {
             fetch(prefixUrl)
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.prefix && (data.prefix.length > 0)) {
                         window.tsvu_prefix.clearPrefixWhenLoaded(data.prefix);
                         window.tsvu_prefix.addSaveHandler(data.prefix, data.toLowerCase);
+                        window.tsvu_prefix.addFieldValidator();
                     }
                 });
         }
+    }
+}
+
+/**
+ * Constructs a URL for the `TenantSpecificVanityUrlServlet` with optional parameters.
+ *
+ * @param params An optional object representing query parameters to append to the URL.
+ */
+window.tsvu_prefix.getTsvuServletUrl = function (params) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const item = urlParams.get('item');
+    if (item && item.startsWith("/content")) {
+        let url = item + ".tsvu_prefix.json";
+        if (params) {
+            url += "?" + new URLSearchParams(params).toString();
+        }
+        return url;
     }
 }
 
@@ -97,12 +113,92 @@ window.tsvu_prefix.addSaveHandler = function (prefix, toLowerCase) {
                     if (toLowerCase) {
                         currentValue.value = currentValue.value.toLowerCase();
                     }
-                    currentValue.value = prefix + currentValue.value;
+                    currentValue.value = window.tsvu_prefix.prependPrefixIfMissing(
+                        currentValue.value, prefix);
                 }
             });
             return {};
         }
     });
+}
+
+/**
+ * Prepends the specified prefix to the given vanity path if it is not already a descendant of the
+ * prefix.
+ * <p>Examples:</p>
+ * <pre>
+ * prependPrefixIfMissing("wow", "/us/en")          = "/us/en/wow"
+ * prependPrefixIfMissing("wow", "/us/en/")         = "/us/en/wow"
+ * prependPrefixIfMissing("/wow", "/us/en")         = "/us/en/wow"
+ * prependPrefixIfMissing("/wow", "/us/en/")        = "/us/en/wow"
+ * prependPrefixIfMissing("/us/en/wow", "/us/en")   = "/us/en/wow"
+ * </pre>
+ *
+ * @param vanityPath the vanity path to check and potentially prepend the prefix to
+ * @param prefix the prefix to prepend if the vanity path is not already under it
+ * @return the resulting path with the prefix prepended if necessary
+ */
+window.tsvu_prefix.prependPrefixIfMissing = function (vanityPath, prefix) {
+    if (vanityPath.startsWith(prefix)) {
+        return vanityPath;
+    }
+    return prefix.trim().replace(/\/+$/, "") + "/" +
+        vanityPath.trim().replace(/^\/+/, "");
+}
+
+/**
+ * Registers backend validation for the vanity URL input fields.
+ */
+window.tsvu_prefix.addFieldValidator = function () {
+    BackendValidation.registerValidator({
+        selector: 'input[name="./sling:vanityPath"]',
+        ignoreEmpty: true,
+        checkValidity: async function (el, controller) {
+            try {
+                const validationUrl = window.tsvu_prefix.getTsvuServletUrl({
+                    cmd: "unique",
+                    path: el.value
+                });
+                if (!validationUrl) {
+                    throw new Error("Can't build validation url");
+                }
+                const response = await fetch(validationUrl, {
+                    signal: controller.signal
+                });
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (e) {
+                return {
+                    error: true,
+                    message: e.message
+                };
+            }
+        },
+        validationMessage(el, result) {
+            if (result.error) {
+                return Granite.I18n.get("Error checking for unique value");
+            }
+
+            if (!result.valid) {
+                const conflictLink = createConflictLink(result.conflicts[0]);
+                return Granite.I18n.get("The value is already used: ") + conflictLink;
+            }
+        }
+    });
+
+    $(document).one("foundation-contentloaded", function(e) {
+        window.tsvu_prefix.findInputFields().forEach(el => {
+            BackendValidation.validateField(el)
+        });
+    });
+
+    function createConflictLink(conflict) {
+        const editorUrl = Granite.HTTP.externalize("/mnt/overlay/wcm/core/content/sites/properties.html");
+        const href = `${editorUrl}?${new URLSearchParams({item: conflict.path})}`;
+        return `<a href="${href}" target="_blank">${conflict.title}</a>`;
+    }
 }
 
 window.tsvu_prefix.init();
