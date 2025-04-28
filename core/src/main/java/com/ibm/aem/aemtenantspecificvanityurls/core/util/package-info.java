@@ -17,6 +17,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 @Version("1.2.0")
-package com.ibm.aem.aemtenantspecificvanityurls.core.servlets;
+package com.ibm.aem.aemtenantspecificvanityurls.core.util;
 
 import org.osgi.annotation.versioning.Version;
