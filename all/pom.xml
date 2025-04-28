@@ -65,6 +65,12 @@
                             <artifactId>aem-tenant-specific-vanity-urls.core</artifactId>
                             <target>/apps/ibm/aem-tenant-specific-vanity-urls/install.author</target>
                         </embedded>
+                        <embedded>
+                            <groupId>com.ibm.aem.aem-tenant-specific-vanity-urls</groupId>
+                            <artifactId>aem-tenant-specific-vanity-urls.ui.config</artifactId>
+                            <type>zip</type>
+                            <target>/apps/ibm/aem-tenant-specific-vanity-urls/install.author</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -169,6 +175,12 @@
         <dependency>
             <groupId>com.ibm.aem.aem-tenant-specific-vanity-urls</groupId>
             <artifactId>aem-tenant-specific-vanity-urls.ui.apps</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.aem.aem-tenant-specific-vanity-urls</groupId>
+            <artifactId>aem-tenant-specific-vanity-urls.ui.config</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>

@@ -101,15 +101,15 @@
             },
             show: function (el, message, ctx) {
                 if (message === MSG_IS_LOADING) {
-                    el.classList.add("is-loading");
+                    el.classList.add("atsv-is-loading");
                     options.clear ? options.clear(el, ctx) : defaultClear(el, ctx);
                 } else {
                     options.show ? options.show(el, message, ctx) : defaultShow(el, message, ctx);
-                    el.classList.remove("is-loading");
+                    el.classList.remove("atsv-is-loading");
                 }
             },
             clear: function (el, ctx) {
-                el.classList.remove("is-loading");
+                el.classList.remove("atsv-is-loading");
                 options.clear ? options.clear(el, ctx) : defaultClear(el, ctx);
             }
         });
@@ -124,7 +124,8 @@
         elValidation.updateUI();
     }
 
-    window.BackendValidation = window.BackendValidation || {
+    window.tsvu_prefix = window.tsvu_prefix || {};
+    window.tsvu_prefix.BackendValidation = window.tsvu_prefix.BackendValidation || {
         registerValidator: registerValidator,
         validateField: validateField
     };

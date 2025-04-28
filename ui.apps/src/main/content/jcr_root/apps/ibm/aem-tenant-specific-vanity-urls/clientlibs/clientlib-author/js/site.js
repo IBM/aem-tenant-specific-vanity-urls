@@ -48,7 +48,7 @@ window.tsvu_prefix.getTsvuServletUrl = function (params) {
     const urlParams = new URLSearchParams(window.location.search);
     const item = urlParams.get('item');
     if (item && item.startsWith("/content")) {
-        let url = item + ".tsvu_prefix.json";
+        let url = item + ".tsvu.json";
         if (params) {
             url += "?" + new URLSearchParams(params).toString();
         }
@@ -150,7 +150,7 @@ window.tsvu_prefix.prependPrefixIfMissing = function (vanityPath, prefix) {
  * Registers backend validation for the vanity URL input fields.
  */
 window.tsvu_prefix.addFieldValidator = function () {
-    BackendValidation.registerValidator({
+    window.tsvu_prefix.BackendValidation.registerValidator({
         selector: 'input[name="./sling:vanityPath"]',
         ignoreEmpty: true,
         checkValidity: async function (el, controller) {
@@ -190,7 +190,7 @@ window.tsvu_prefix.addFieldValidator = function () {
 
     $(document).one("foundation-contentloaded", function(e) {
         window.tsvu_prefix.findInputFields().forEach(el => {
-            BackendValidation.validateField(el)
+            window.tsvu_prefix.BackendValidation.validateField(el)
         });
     });
 

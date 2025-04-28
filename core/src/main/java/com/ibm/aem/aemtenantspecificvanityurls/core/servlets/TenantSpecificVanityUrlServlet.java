@@ -38,6 +38,7 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.caconfig.ConfigurationBuilder;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.jcr.Session;
@@ -60,8 +61,9 @@ immediate = true,
 property = {
         "sling.servlet.methods=GET",
         "sling.servlet.extensions=json",
-        "sling.servlet.selectors=tsvu_prefix",
-        "sling.servlet.resourceTypes=sling/servlet/default"})
+        "sling.servlet.selectors=tsvu",
+        "sling.servlet.resourceTypes=sling/servlet/default"},
+configurationPolicy = ConfigurationPolicy.REQUIRE)
 public class TenantSpecificVanityUrlServlet extends SlingSafeMethodsServlet {
 
     public static final String RP_COMMAND = "cmd";
@@ -151,7 +153,7 @@ public class TenantSpecificVanityUrlServlet extends SlingSafeMethodsServlet {
         Session session = resolver.adaptTo(Session.class);
         Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
         query.setStart(0);
-        query.setHitsPerPage(20);
+        query.setHitsPerPage(2);
 
         SearchResult result = query.getResult();
         return new TransformIterator<>(result.getResources(), resource -> resource.adaptTo(Page.class));
