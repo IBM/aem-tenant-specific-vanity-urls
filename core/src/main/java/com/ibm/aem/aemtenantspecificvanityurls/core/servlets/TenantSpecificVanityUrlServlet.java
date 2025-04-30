@@ -148,11 +148,10 @@ public class TenantSpecificVanityUrlServlet extends SlingSafeMethodsServlet {
         map.put("type", "cq:Page");
         map.put("1_property", "jcr:content/sling:vanityPath");
         map.put("1_property.value", vanityPath);
+        map.put("p.limit", "2");
 
         Session session = resolver.adaptTo(Session.class);
         Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
-        query.setStart(0);
-        query.setHitsPerPage(2);
 
         SearchResult result = query.getResult();
         return new TransformIterator<>(result.getResources(), resource -> resource.adaptTo(Page.class));
