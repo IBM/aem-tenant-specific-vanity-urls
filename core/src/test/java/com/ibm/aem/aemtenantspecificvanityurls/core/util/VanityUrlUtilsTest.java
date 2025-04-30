@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 IBM iX
+ * Copyright 2025 IBM iX
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -29,12 +29,10 @@ class VanityUrlUtilsTest {
 
     @Test
     void testPrependPrefixIfMissing() {
-        assertEquals("/us/en/wow", VanityUrlUtils.prependPrefixIfMissing("wow", "/us/en"));
+        assertEquals("/us/en_wow", VanityUrlUtils.prependPrefixIfMissing("wow", "/us/en_"));
         assertEquals("/us/en/wow", VanityUrlUtils.prependPrefixIfMissing("wow", "/us/en/"));
-        assertEquals("/us/en/wow", VanityUrlUtils.prependPrefixIfMissing("/wow", "/us/en"));
-        assertEquals("/us/en/wow", VanityUrlUtils.prependPrefixIfMissing("/wow", "/us/en/"));
 
-        assertEquals("/us/en/wow", VanityUrlUtils.prependPrefixIfMissing("/us/en/wow", "/us/en"));
+        assertEquals("/us/en/wow", VanityUrlUtils.prependPrefixIfMissing("/us/en/wow", "/us/en/"));
     }
 
 }

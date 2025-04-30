@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 IBM iX
+ * Copyright 2025 IBM iX
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -18,9 +18,6 @@
  */
 package com.ibm.aem.aemtenantspecificvanityurls.core.util;
 
-import com.day.text.Text;
-import org.apache.sling.api.resource.path.PathBuilder;
-
 public final class VanityUrlUtils {
 
     private VanityUrlUtils() {
@@ -29,13 +26,9 @@ public final class VanityUrlUtils {
 
     /**
      * Prepends the specified prefix to the given vanity path if it is not already a descendant of the prefix.
-     * <p>Examples:</p>
+     * <p>Example:</p>
      * <pre>
-     * prependPrefixIfMissing("wow", "/us/en")          = "/us/en/wow"
      * prependPrefixIfMissing("wow", "/us/en/")         = "/us/en/wow"
-     * prependPrefixIfMissing("/wow", "/us/en")         = "/us/en/wow"
-     * prependPrefixIfMissing("/wow", "/us/en/")        = "/us/en/wow"
-     * prependPrefixIfMissing("/us/en/wow", "/us/en")   = "/us/en/wow"
      * </pre>
      *
      * @param vanityPath the vanity path to check and potentially prepend the prefix to
@@ -43,10 +36,10 @@ public final class VanityUrlUtils {
      * @return the resulting path with the prefix prepended if necessary
      */
     public static String prependPrefixIfMissing(final String vanityPath, final String prefix) {
-        if (Text.isDescendant(prefix, vanityPath)) {
+        if (vanityPath.startsWith(prefix)) {
             return vanityPath;
         }
-        return new PathBuilder(prefix).append(vanityPath).toString();
+        return prefix + vanityPath;
     }
 
 }

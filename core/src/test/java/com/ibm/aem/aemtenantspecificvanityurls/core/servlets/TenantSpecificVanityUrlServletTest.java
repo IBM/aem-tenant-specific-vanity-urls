@@ -137,7 +137,7 @@ public class TenantSpecificVanityUrlServletTest {
         verify(writer).write("{" +
                 "\"valid\":true," +
                 "\"prefix\":\"" + MYPREFIX + "\"," +
-                "\"vanityPath\":\"" + MYPREFIX + "/wow\"" +
+                "\"vanityPath\":\"" + MYPREFIX + "wow\"" +
                 "}");
     }
 
@@ -160,7 +160,7 @@ public class TenantSpecificVanityUrlServletTest {
         verify(writer).write("{" +
                 "\"valid\":true," +
                 "\"prefix\":\"" + MYPREFIX + "\"," +
-                "\"vanityPath\":\"" + MYPREFIX + "/wow\"" +
+                "\"vanityPath\":\"" + MYPREFIX + "wow\"" +
                 "}");
     }
 
@@ -187,7 +187,7 @@ public class TenantSpecificVanityUrlServletTest {
         verify(writer).write("{" +
                 "\"valid\":false," +
                 "\"prefix\":\"" + MYPREFIX + "\"," +
-                "\"vanityPath\":\"" + MYPREFIX + "/wow\"," +
+                "\"vanityPath\":\"" + MYPREFIX + "wow\"," +
                 "\"conflicts\":[" +
                 "{\"path\":\"" + CONFLICTING_PAGE_PATH + "\",\"title\":\"" + CONFLICTING_PAGE_TITLE + "\"}" +
                 "]}");
