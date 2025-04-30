@@ -62,8 +62,7 @@ property = {
         "sling.servlet.methods=GET",
         "sling.servlet.extensions=json",
         "sling.servlet.selectors=tsvu",
-        "sling.servlet.resourceTypes=sling/servlet/default"},
-configurationPolicy = ConfigurationPolicy.REQUIRE)
+        "sling.servlet.resourceTypes=sling/servlet/default"})
 public class TenantSpecificVanityUrlServlet extends SlingSafeMethodsServlet {
 
     public static final String RP_COMMAND = "cmd";
