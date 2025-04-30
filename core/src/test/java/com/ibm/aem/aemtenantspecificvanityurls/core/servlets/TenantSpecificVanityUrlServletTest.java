@@ -29,6 +29,7 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.caconfig.ConfigurationBuilder;
+import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,11 +37,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import javax.jcr.Session;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 import static com.ibm.aem.aemtenantspecificvanityurls.core.servlets.TenantSpecificVanityUrlServlet.*;
 import static org.mockito.Mockito.*;
@@ -49,6 +53,7 @@ import static org.mockito.Mockito.*;
  * Tests TenantSpecificVanityUrlServlet
  */
 @ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 public class TenantSpecificVanityUrlServletTest {
 
     public static final String MYPREFIX = "/myprefix";
@@ -78,6 +83,9 @@ public class TenantSpecificVanityUrlServletTest {
     private QueryBuilder queryBuilder;
 
     @Mock
+    private ConfigurationResourceResolver configurationResourceResolver;
+
+    @Mock
     private ResourceResolver resolver;
 
     @Mock
@@ -102,6 +110,7 @@ public class TenantSpecificVanityUrlServletTest {
         when(builder.as(TenantSpecificVanityUrlConfig.class)).thenReturn(config);
         when(config.prefix()).thenReturn(MYPREFIX);
         when(response.getWriter()).thenReturn(writer);
+        when(configurationResourceResolver.getAllContextPaths(resource)).thenReturn(Arrays.asList(MYPREFIX));
     }
 
     @Test
@@ -126,9 +135,9 @@ public class TenantSpecificVanityUrlServletTest {
         servlet.doGet(request, response);
 
         verify(writer).write("{" +
+                "\"valid\":true," +
                 "\"prefix\":\"" + MYPREFIX + "\"," +
-                "\"vanityPath\":\"" + MYPREFIX + "/wow\"," +
-                "\"valid\":true" +
+                "\"vanityPath\":\"" + MYPREFIX + "/wow\"" +
                 "}");
     }
 
@@ -149,9 +158,9 @@ public class TenantSpecificVanityUrlServletTest {
         servlet.doGet(request, response);
 
         verify(writer).write("{" +
+                "\"valid\":true," +
                 "\"prefix\":\"" + MYPREFIX + "\"," +
-                "\"vanityPath\":\"" + MYPREFIX + "/wow\"," +
-                "\"valid\":true" +
+                "\"vanityPath\":\"" + MYPREFIX + "/wow\"" +
                 "}");
     }
 
@@ -176,9 +185,9 @@ public class TenantSpecificVanityUrlServletTest {
         servlet.doGet(request, response);
 
         verify(writer).write("{" +
+                "\"valid\":false," +
                 "\"prefix\":\"" + MYPREFIX + "\"," +
-                "\"vanityPath\":\"" + MYPREFIX + "/wow\"" +
-                ",\"valid\":false," +
+                "\"vanityPath\":\"" + MYPREFIX + "/wow\"," +
                 "\"conflicts\":[" +
                 "{\"path\":\"" + CONFLICTING_PAGE_PATH + "\",\"title\":\"" + CONFLICTING_PAGE_TITLE + "\"}" +
                 "]}");

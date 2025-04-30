@@ -18,15 +18,20 @@
  */
 package com.ibm.aem.aemtenantspecificvanityurls.core.servlets;
 
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.SearchResult;
-import com.day.cq.wcm.api.Page;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.ibm.aem.aemtenantspecificvanityurls.core.caconfig.TenantSpecificVanityUrlConfig;
-import com.ibm.aem.aemtenantspecificvanityurls.core.util.VanityUrlUtils;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.jcr.Session;
+import javax.servlet.Servlet;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.collections4.iterators.FilterIterator;
 import org.apache.commons.collections4.iterators.TransformIterator;
 import org.apache.commons.lang3.StringUtils;
@@ -37,19 +42,19 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.caconfig.ConfigurationBuilder;
+import org.apache.sling.caconfig.resource.ConfigurationResourceResolver;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 
-import javax.jcr.Session;
-import javax.servlet.Servlet;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.Query;
+import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.SearchResult;
+import com.day.cq.wcm.api.Page;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.ibm.aem.aemtenantspecificvanityurls.core.caconfig.TenantSpecificVanityUrlConfig;
+import com.ibm.aem.aemtenantspecificvanityurls.core.util.VanityUrlUtils;
 
 /**
  * Servlet to provide prefix for vanity URLs.
@@ -73,6 +78,9 @@ public class TenantSpecificVanityUrlServlet extends SlingSafeMethodsServlet {
 
     @Reference
     private QueryBuilder queryBuilder;
+
+    @Reference
+    private ConfigurationResourceResolver configurationResourceResolver;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
@@ -99,7 +107,13 @@ public class TenantSpecificVanityUrlServlet extends SlingSafeMethodsServlet {
     }
 
     private void doCheckUniquenessCommand(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+        JsonObject result = new JsonObject();
+        result.addProperty("valid", true);
         TenantSpecificVanityUrlConfig config = resolveVanityUrlConfig(request);
+        if (config.prefix() == null) {
+            sendResponse(response, result);
+            return;
+        }
 
         String vanityPath = request.getParameter(RP_VANITY_PATH);
         if (StringUtils.isBlank(vanityPath)) {
@@ -112,12 +126,16 @@ public class TenantSpecificVanityUrlServlet extends SlingSafeMethodsServlet {
         }
 
         ResourceResolver resolver = request.getResourceResolver();
+        // the search path for duplicates is the highest level that contains a CA config
+        Collection<String> allContextPaths = configurationResourceResolver.getAllContextPaths(request.getResource());
+        List<String> orderedContextPaths = new ArrayList<>(allContextPaths);
+        orderedContextPaths.sort(null);
+        String searchPath = orderedContextPaths.get(0);
         Iterator<Page> conflictingPages = filterCurrentPage(
-                findPagesByVanityPath(config.prefix(), vanityPath, resolver),
+                findPagesByVanityPath(searchPath, vanityPath, resolver),
                 request.getResource().adaptTo(Page.class)
         );
 
-        JsonObject result = new JsonObject();
         result.addProperty("prefix", config.prefix());
         result.addProperty("vanityPath", vanityPath);
         result.addProperty("valid", !conflictingPages.hasNext());
