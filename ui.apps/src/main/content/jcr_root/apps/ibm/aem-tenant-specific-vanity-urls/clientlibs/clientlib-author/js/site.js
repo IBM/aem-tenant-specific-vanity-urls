@@ -127,11 +127,7 @@ window.tsvu_prefix.addSaveHandler = function (prefix, toLowerCase) {
  * prefix.
  * <p>Examples:</p>
  * <pre>
- * prependPrefixIfMissing("wow", "/us/en")          = "/us/en/wow"
- * prependPrefixIfMissing("wow", "/us/en/")         = "/us/en/wow"
- * prependPrefixIfMissing("/wow", "/us/en")         = "/us/en/wow"
- * prependPrefixIfMissing("/wow", "/us/en/")        = "/us/en/wow"
- * prependPrefixIfMissing("/us/en/wow", "/us/en")   = "/us/en/wow"
+ * prependPrefixIfMissing("wow", "/us/en/") = "/us/en/wow"
  * </pre>
  *
  * @param vanityPath the vanity path to check and potentially prepend the prefix to
@@ -142,8 +138,7 @@ window.tsvu_prefix.prependPrefixIfMissing = function (vanityPath, prefix) {
     if (vanityPath.startsWith(prefix)) {
         return vanityPath;
     }
-    return prefix.trim().replace(/\/+$/, "") + "/" +
-        vanityPath.trim().replace(/^\/+/, "");
+    return prefix + vanityPath;
 }
 
 /**
