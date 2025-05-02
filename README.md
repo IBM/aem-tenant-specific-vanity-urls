@@ -64,6 +64,12 @@ E.g. check if they are not blocked or transformed. The result needs to be "/cont
 Vanity URLs should not have any extension. If your normal pages have an ".html" extension then make sure that
 a call of e.g. "http://ca.vanity.local:8080/wow" is correctly handled by your rewrites and results in e.g. "/content/wknd/ca/en/wow.html".
 
+## Duplicate Check
+
+The tool automatically checks for duplicates of vanity URLs. This prevents editors to assign the same vanity URL on multiple pages.
+
+![Duplicate found](docs/images/duplicate.png)
+
 ## Vanity Report Tool
 
 You can see a list of all vanity URLs in the system. Open Tools ->

@@ -1,4 +1,8 @@
 # Release History
+
+* 1.2.0
+  * Check if vanity path is already existing
+
 * 1.1.0
   * Added possibility to auto-convert vanity values to lower-case
   * More example vanity URLs

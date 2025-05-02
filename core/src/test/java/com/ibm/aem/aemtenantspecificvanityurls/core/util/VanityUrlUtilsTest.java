@@ -16,7 +16,23 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-@Version("1.2.0")
-package com.ibm.aem.aemtenantspecificvanityurls.core.servlets;
+package com.ibm.aem.aemtenantspecificvanityurls.core.util;
 
-import org.osgi.annotation.versioning.Version;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@ExtendWith(MockitoExtension.class)
+class VanityUrlUtilsTest {
+
+    @Test
+    void testPrependPrefixIfMissing() {
+        assertEquals("/us/en_wow", VanityUrlUtils.prependPrefixIfMissing("wow", "/us/en_"));
+        assertEquals("/us/en/wow", VanityUrlUtils.prependPrefixIfMissing("wow", "/us/en/"));
+
+        assertEquals("/us/en/wow", VanityUrlUtils.prependPrefixIfMissing("/us/en/wow", "/us/en/"));
+    }
+
+}

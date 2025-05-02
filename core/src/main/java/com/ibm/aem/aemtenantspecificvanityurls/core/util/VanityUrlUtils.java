@@ -16,7 +16,30 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-@Version("1.2.0")
-package com.ibm.aem.aemtenantspecificvanityurls.core.servlets;
+package com.ibm.aem.aemtenantspecificvanityurls.core.util;
 
-import org.osgi.annotation.versioning.Version;
+public final class VanityUrlUtils {
+
+    private VanityUrlUtils() {
+        // empty
+    }
+
+    /**
+     * Prepends the specified prefix to the given vanity path if it is not already a descendant of the prefix.
+     * <p>Example:</p>
+     * <pre>
+     * prependPrefixIfMissing("wow", "/us/en/")         = "/us/en/wow"
+     * </pre>
+     *
+     * @param vanityPath the vanity path to check and potentially prepend the prefix to
+     * @param prefix the prefix to prepend if the vanity path is not already under it
+     * @return the resulting path with the prefix prepended if necessary
+     */
+    public static String prependPrefixIfMissing(final String vanityPath, final String prefix) {
+        if (vanityPath.startsWith(prefix)) {
+            return vanityPath;
+        }
+        return prefix + vanityPath;
+    }
+
+}
