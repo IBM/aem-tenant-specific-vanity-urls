@@ -40,17 +40,17 @@ Follow these steps to get authorized to perform a release.
 * Update your "~/.zshrc" and add `export GPG_TTY=$(tty)`, then close all open terminals and exit the terminal app
 * Create/update "~/.gnupg/gpg-agent.conf" and add `pinentry-program /opt/homebrew/bin/pinentry-mac`
 * `gpgconf --kill gpg-agent`
-* Request publish rights for Maven Central at "com.ibm.aem" via Sonatype ticket (https://issues.sonatype.org/secure/Dashboard.jspa).
- The request needs to be approved by someone who already has this right.
-* Add the Sonatype credentials to your .m2/settings.xml file:
+* Request publish rights for Maven Central at "com.ibm.aem" (https://central.sonatype.org/register/central-portal/).
+  The request needs to be approved by someone who already has this right.
+* Follow https://central.sonatype.org/publish/generate-portal-token/ to get your user token and add it to your .m2/settings.xml file:
 
 ```
 <settings>
   <servers>
     <server>
-      <id>ossrh</id>
-      <username>your-jira-id</username>
-      <password>your-jira-pwd</password>
+      <id>central</id>
+      <username>token-id</username>
+      <password>token-value</password>
     </server>
   </servers>
 </settings>
