@@ -130,10 +130,13 @@ public class ReportService {
             for (Hit hit : hits) {
                 Resource resource = hit.getResource();
                 Resource pageResource = resource.getParent();
-                ReportEntry entry = new ReportEntry();
-                entry.setVanityUrl(resource.getValueMap().get(NameConstants.PN_SLING_VANITY_PATH, String.class));
-                entry.setPagePath(pageResource.getPath());
-                entries.add(entry);
+                String[] vanities = resource.getValueMap().get(NameConstants.PN_SLING_VANITY_PATH, String[].class);
+                for (String vanity : vanities) {
+                    ReportEntry entry = new ReportEntry();
+                    entry.setVanityUrl(vanity);
+                    entry.setPagePath(pageResource.getPath());
+                    entries.add(entry);
+                }
             }
         }
         catch (RepositoryException e) {

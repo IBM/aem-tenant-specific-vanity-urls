@@ -106,8 +106,8 @@ class ReportServiceTest {
         when(resource2.getParent()).thenReturn(resource2);
         when(resource1.getPath()).thenReturn(PATH1);
         when(resource2.getPath()).thenReturn(PATH2);
-        when(vm1.get(NameConstants.PN_SLING_VANITY_PATH, String.class)).thenReturn(VANITY1);
-        when(vm2.get(NameConstants.PN_SLING_VANITY_PATH, String.class)).thenReturn(VANITY2);
+        when(vm1.get(NameConstants.PN_SLING_VANITY_PATH, String[].class)).thenReturn(new String[] {VANITY1});
+        when(vm2.get(NameConstants.PN_SLING_VANITY_PATH, String[].class)).thenReturn(new String[] {VANITY2});
     }
 
     @Test

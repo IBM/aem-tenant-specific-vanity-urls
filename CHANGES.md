@@ -1,4 +1,6 @@
 # Release History
+* 1.2.1
+  * Fixed report for pages that have multiple vanity URLs set
 
 * 1.2.0
   * Check if vanity path is already existing
