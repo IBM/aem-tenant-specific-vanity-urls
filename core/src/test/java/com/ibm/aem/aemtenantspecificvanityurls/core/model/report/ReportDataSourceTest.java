@@ -97,9 +97,12 @@ class ReportDataSourceTest {
 
         reportDataSource.setup();
 
-        ArgumentCaptor argumentCaptor = ArgumentCaptor.forClass(SlingHttpServletRequest.class);
+        ArgumentCaptor<DataSource> argumentCaptor = ArgumentCaptor.forClass(DataSource.class);
+        verify(request).getRequestPathInfo();
+        verify(request).getRequestParameter("sortDir");
+        verify(request).getRequestParameter("sortName");
         verify(request).setAttribute(Mockito.eq(DataSource.class.getName()), argumentCaptor.capture());
-        DataSource dataSource = (DataSource) argumentCaptor.getValue();
+        DataSource dataSource = argumentCaptor.getValue();
         Iterator<Resource> it = dataSource.iterator();
         assertTrue(it.hasNext());
         Resource res1 = it.next();
