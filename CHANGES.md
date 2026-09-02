@@ -1,4 +1,7 @@
 # Release History
+* 1.3.0
+  * Requires AEM 6.5 LTS SP 3 or Cloud
+
 * 1.2.1
   * Fixed report for pages that have multiple vanity URLs set
 

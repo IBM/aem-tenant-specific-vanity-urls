@@ -13,7 +13,7 @@ The tool was presented at the [adaptTo() conference 2023](https://adapt.to/2023/
 ## Requirements
 
 The following AEM versions are supported:
-* AEM 6.5.15 and later
+* AEM 6.6.3 and later
 * AEM Cloud
 
 ## Installation
