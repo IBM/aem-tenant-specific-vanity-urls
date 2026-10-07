@@ -190,7 +190,7 @@ window.tsvu_prefix.addFieldValidator = function () {
     });
 
     function createConflictLink(conflict) {
-        return `${conflict.title} (${conflict.path})`;
+        return conflict.title + " (" + conflict.path + ")";
     }
 }
 
