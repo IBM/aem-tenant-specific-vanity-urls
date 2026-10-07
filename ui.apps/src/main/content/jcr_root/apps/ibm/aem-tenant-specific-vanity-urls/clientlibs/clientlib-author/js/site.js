@@ -190,9 +190,7 @@ window.tsvu_prefix.addFieldValidator = function () {
     });
 
     function createConflictLink(conflict) {
-        const editorUrl = Granite.HTTP.externalize("/mnt/overlay/wcm/core/content/sites/properties.html");
-        const href = `${editorUrl}?${new URLSearchParams({item: conflict.path})}`;
-        return `<a href="${href}" target="_blank">${conflict.title}</a>`;
+        return `${conflict.title} (${conflict.path})`;
     }
 }
 
